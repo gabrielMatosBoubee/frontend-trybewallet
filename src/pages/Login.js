@@ -57,7 +57,7 @@ class Login extends React.Component {
           type="button"
           disabled={ able }
           onClick={ () => {
-            dispatch(loginAction(password, email));
+            dispatch(loginAction(email));
             history.push('/carteira');
           } }
         >

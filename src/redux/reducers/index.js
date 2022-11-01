@@ -4,17 +4,7 @@ import wallet from './wallet';
 
 // Configure os seus reducers.
 
-const rootReducers = combineReducers({ user });
-
-// const reducer = (state = inicialState, action) => {
-//   switch (action.type) {
-//   case 'login':
-//     return user;
-//   case 'wallet':
-//     return wallet;
-//   default: return state;
-//   }
-// };
+const rootReducers = combineReducers({ user, wallet });
 
 export default rootReducers;
 

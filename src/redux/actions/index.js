@@ -1,6 +1,6 @@
-export const login = 'login';
+export const login = 'user';
 
-export const loginAction = (payload) => ({
+export const loginAction = (email) => ({
   type: login,
-  payload,
+  email,
 });
