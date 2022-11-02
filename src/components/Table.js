@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 
 class Table extends Component {
   render() {
@@ -9,38 +10,39 @@ class Table extends Component {
         <table>
           <thead>
             <tr>
-              <th>Descrição</th>
-              <th>Tag</th>
-              <th>Método de pagamento</th>
-              <th>Valor</th>
-              <th>Moeda</th>
-              <th>Câmbio utilizado</th>
-              <th>Valor convertido</th>
+              <th className="1">Descrição</th>
+              <th className="2">Tag</th>
+              <th className="3">Método de pagamento</th>
+              <th className="4">Valor</th>
+              <th className="5">Moeda</th>
+              <th className="6">Câmbio utilizado</th>
+              <th className="7">Valor convertido</th>
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-          {/* <tbody>
+          <tbody>
             { expenses.map((element) => ((
               <tr key={ element.id }>
-                <td>{element.description}</td>
-                <td>{element.tag}</td>
-                <td>{element.payment}</td>
-                <td>{element.value}</td>
-                <td>{element.currency}</td>
-                <td>{element.method}</td>
-                <td>{element.exchangeRates[element.currency]}</td>
-                <td>
+                <td className="1">{element.description}</td>
+                <td className="2">{element.tag}</td>
+                <td className="3">{element.method}</td>
+                <td className="4">{(Number(element.value)).toFixed(2)}</td>
+                <td className="5">{element.exchangeRates[element.currency].name}</td>
+                <td className="6">
                   {
-                    Number(element.exchangeRates[element.currency])
-                    * Number(element.value)
+                    (Number(element.exchangeRates[element.currency].ask)).toFixed(2)
                   }
                 </td>
+                <td className="7">
+                  {(Number(element.exchangeRates[element.currency].ask)
+                  * Number(element.value)).toFixed(2)}
+                </td>
                 <td>Real</td>
-                <button type="button">Editar/Excluir</button>
+                <td><button type="button">Editar/Excluir</button></td>
               </tr>
             ))) }
-          </tbody> */}
+          </tbody>
         </table>
       </div>
     );
@@ -50,5 +52,9 @@ class Table extends Component {
 const mapStateToProps = (globalState) => ({
   expenses: globalState.wallet.expenses,
 });
+
+Table.propTypes = {
+  expenses: propTypes.arrayOf(propTypes.shape).isRequired,
+};
 
 export default connect(mapStateToProps)(Table);

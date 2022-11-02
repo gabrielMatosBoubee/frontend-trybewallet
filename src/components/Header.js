@@ -20,7 +20,6 @@ class Header extends Component {
 
   conta = () => {
     const { expenses } = this.props;
-    console.log(expenses);
     const totalValue = expenses.reduce((acc, cur) => {
       const { currency } = cur;
       const currencyValue = Number(cur.exchangeRates[currency].ask);
