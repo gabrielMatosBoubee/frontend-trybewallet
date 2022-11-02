@@ -41,7 +41,6 @@ class WalletForm extends Component {
   render() {
     const { currencies } = this.props;
     const { value, description, currency, method, tag } = this.state;
-    const currenciesKeys = Object.keys(currencies);
     return (
       <div>
         <label htmlFor="value">
@@ -74,7 +73,7 @@ class WalletForm extends Component {
             value={ currency }
             onChange={ this.onInputChange }
           >
-            {currenciesKeys?.map((coins) => ((
+            {currencies?.map((coins) => ((
               <option
                 key={ coins }
                 value={ coins }

@@ -13,7 +13,7 @@ const currenciesReducer = (state = inicialState, action) => {
     return { ...state };
   case 'request_currencie_success':
     return { ...state,
-      currencies: action.currencies,
+      currencies: Object.keys(action.currencies),
     };
   case 'addExpense':
     return { ...state,
