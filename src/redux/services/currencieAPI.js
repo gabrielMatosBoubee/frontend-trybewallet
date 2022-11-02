@@ -4,8 +4,7 @@ const getCurrencieApi = async () => {
   const reponse = await fetch(currencieEndPoint);
   const json = await reponse.json();
   delete json.USDT;
-  const coins = Object.keys(json);
-  return reponse.ok ? Promise.resolve(coins) : Promise.reject(coins);
+  return reponse.ok ? Promise.resolve(json) : Promise.reject(json);
 };
 
 export default getCurrencieApi;

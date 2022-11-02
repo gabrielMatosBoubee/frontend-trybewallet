@@ -24,3 +24,8 @@ export function fetchCurrencie() {
     dispatch(requestCurrencieSuccess(response));
   };
 }
+
+export const addExpense = (payload) => ({
+  type: 'addExpense',
+  expenses: payload,
+});
