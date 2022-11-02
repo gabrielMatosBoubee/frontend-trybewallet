@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { expenseDeleted } from '../redux/actions';
 
 class Table extends Component {
+  onClick = ({ target: { name } }) => {
+    const { expenses, dispatch } = this.props;
+    const expensesFilter = expenses.filter((element) => element.id !== Number(name));
+    console.log(expensesFilter);
+    dispatch(expenseDeleted(expensesFilter));
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -22,7 +30,7 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            { expenses.map((element) => ((
+            { expenses?.map((element) => ((
               <tr key={ element.id }>
                 <td className="1">{element.description}</td>
                 <td className="2">{element.tag}</td>
@@ -39,7 +47,17 @@ class Table extends Component {
                   * Number(element.value)).toFixed(2)}
                 </td>
                 <td>Real</td>
-                <td><button type="button">Editar/Excluir</button></td>
+                <td>
+                  <button
+                    name={ element.id }
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ this.onClick }
+                  >
+                    Editar/Excluir
+                  </button>
+
+                </td>
               </tr>
             ))) }
           </tbody>
@@ -55,6 +73,7 @@ const mapStateToProps = (globalState) => ({
 
 Table.propTypes = {
   expenses: propTypes.arrayOf(propTypes.shape).isRequired,
+  dispatch: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Table);

@@ -18,6 +18,10 @@ const currenciesReducer = (state = inicialState, action) => {
     return { ...state,
       // const [state.expenses]
       expenses: [...state.expenses, action.expenses] };
+  case 'expenseDeleted':
+    return { ...state,
+      expenses: action.expenses,
+    };
   default: return state;
   }
 };

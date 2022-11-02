@@ -29,3 +29,8 @@ export const addExpense = (payload) => ({
   type: 'addExpense',
   expenses: payload,
 });
+
+export const expenseDeleted = (payload) => ({
+  type: 'expenseDeleted',
+  expenses: payload,
+});
