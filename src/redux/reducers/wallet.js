@@ -4,6 +4,7 @@ const inicialState = {
   expenses: [],
   editor: false,
   idToEdit: 0,
+  allValue: 0,
 };
 
 const currenciesReducer = (state = inicialState, action) => {
@@ -21,6 +22,10 @@ const currenciesReducer = (state = inicialState, action) => {
   case 'expenseDeleted':
     return { ...state,
       expenses: action.expenses,
+    };
+  case 'addAllValue':
+    return { ...state,
+      allValue: action.allValue,
     };
   default: return state;
   }

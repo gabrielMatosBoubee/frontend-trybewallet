@@ -34,3 +34,8 @@ export const expenseDeleted = (payload) => ({
   type: 'expenseDeleted',
   expenses: payload,
 });
+
+export const addAllValue = (payload) => ({
+  type: 'addAllValue',
+  allValue: payload,
+});

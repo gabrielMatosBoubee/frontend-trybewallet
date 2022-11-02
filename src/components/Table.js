@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { expenseDeleted } from '../redux/actions';
+import { addAllValue, expenseDeleted } from '../redux/actions';
 
 class Table extends Component {
   onClick = ({ target: { name } }) => {
     const { expenses, dispatch } = this.props;
     const expensesFilter = expenses.filter((element) => element.id !== Number(name));
-    console.log(expensesFilter);
+    const totalValue = expensesFilter.reduce((acc, cur) => {
+      const { currency } = cur;
+      const currencyValue = Number(cur.exchangeRates[currency].ask);
+      const { value } = cur;
+      const valueWithCurrency = +value * currencyValue;
+      acc += Number(valueWithCurrency);
+      return acc;
+    }, 0);
+    dispatch(addAllValue(totalValue));
     dispatch(expenseDeleted(expensesFilter));
   };
 
