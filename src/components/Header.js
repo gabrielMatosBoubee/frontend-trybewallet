@@ -12,7 +12,7 @@ class Header extends Component {
   componentDidUpdate() {
     const { expenseLength } = this.state;
     const { expenses } = this.props;
-    if (expenses[expenses.length - 1].id > expenseLength) {
+    if (expenses.length > 0 && expenses[expenses.length - 1].id > expenseLength) {
       this.conta();
       this.setState({ expenseLength: Number((expenses[expenses.length - 1].id)) });
     }
