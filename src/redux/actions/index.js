@@ -39,3 +39,13 @@ export const addAllValue = (payload) => ({
   type: 'addAllValue',
   allValue: payload,
 });
+
+export const editBtnAction = (payload) => ({
+  type: 'editBtnAction',
+  editBtn: payload,
+});
+
+export const editBtnExpenseAction = (payload) => ({
+  type: 'editBtnExpense',
+  newExpenses: payload,
+});

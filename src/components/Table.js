@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { addAllValue, expenseDeleted } from '../redux/actions';
+import { editBtnAction, expenseDeleted } from '../redux/actions';
 
 class Table extends Component {
   onClick = ({ target: { name } }) => {
     const { expenses, dispatch } = this.props;
-    const expensesFilter = expenses.filter((element) => element.id !== Number(name));
-    const totalValue = expensesFilter.reduce((acc, cur) => {
-      const { currency } = cur;
-      const currencyValue = Number(cur.exchangeRates[currency].ask);
-      const { value } = cur;
-      const valueWithCurrency = +value * currencyValue;
-      acc += Number(valueWithCurrency);
-      return acc;
-    }, 0);
-    dispatch(addAllValue(totalValue));
+    const expensesFilter = expenses
+      .filter((element) => Number(element.id) !== Number(name));
     dispatch(expenseDeleted(expensesFilter));
+  };
+
+  onClickEditBtn = ({ target: { name } }) => {
+    const { dispatch } = this.props;
+    dispatch(editBtnAction(({ edit: true, id: name })));
   };
 
   render() {
@@ -62,9 +59,16 @@ class Table extends Component {
                     data-testid="delete-btn"
                     onClick={ this.onClick }
                   >
-                    Editar/Excluir
+                    Excluir
                   </button>
-
+                  <button
+                    name={ element.id }
+                    data-testid="edit-btn"
+                    type="button"
+                    onClick={ this.onClickEditBtn }
+                  >
+                    Editar
+                  </button>
                 </td>
               </tr>
             ))) }
